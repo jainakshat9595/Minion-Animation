@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://120.56.254.218:8000/Minion/minion.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<title>MinionAnimation!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="./MinionAnimation!_files/jquery.min.js"></script>
+<style type="text/css">
+
+	html{
+		overflow:  hidden;
+		cursor: url('bananaSmall.png');
+	}
+	img{
+		width:100%;
+	}
+
+	#right{
+		z-index: 5;
+		position: absolute;
+		top: 0;
+	}
+
+	#left{
+		z-index: 5;
+		position: absolute;
+		top: 0;
+	}	
+
+	#base{
+		z-index: -1;
+		position: absolute;
+		top: 0;
+	}
+</style></head>
+
+<body>
+	<img id="base" src="./MinionAnimation!_files/minionBase.png">
+	<img id="right" src="./MinionAnimation!_files/rightEye.png" style="right: -1.04091657878682%; top: -0.585042957959873%;">
+	<img id="left" src="./MinionAnimation!_files/leftEye.png" style="left: -1.6589790040036%; top: -0.614682746677025%;">
+
+
+	<script type="text/javascript">
+
+		var winW=($(window).width())/2;
+ 		var winH=($(window).height())/2;
+
+		var left=$('#left');
+		var right=$('#right');
+
+		var rightOffsetTop=-1;
+		var rightOffsetRight=-1.5;
+		var leftOffsetTop=-1;
+		var leftOffsetLeft=-1.2;
+
+		var leftA=2;
+		var leftB=2.6;
+		var rightA=2;
+		var rightB=2.8;
+
+		// CENTER COORDINATES! RIGHT EYE: right: -1.5%; top: -1.2%;
+		// FOR EQUATION: RIGHT EYE: a=2.4%, b=5.2%
+		// CENTER COORDINATES! LEFT EYE: left: -1.2%; top: -1.5%;
+		// FOR EQUATION: LEFT EYE: a=2.4%, b=5%
+
+		$(window).on('mousemove',function($event){
+			var xDiff=($event.pageX-winW)/winW;
+			var yDiff=($event.pageY-winH)/winH;
+			left.css('left',(leftOffsetLeft+(xDiff*Math.sqrt((leftA*leftA)*(1-(yDiff*yDiff)/(leftB*leftB)))))+'%');
+			left.css('top',(leftOffsetTop+(yDiff*Math.sqrt((leftB*leftB)*(1-(xDiff*xDiff)/(leftA*leftA)))))+'%');
+			right.css('right',(rightOffsetRight+(-xDiff*Math.sqrt((rightA*rightA)*(1-(yDiff*yDiff)/(rightB*rightB)))))+'%');
+			right.css('top',(rightOffsetTop+(yDiff*Math.sqrt((rightB*rightB)*(1-(xDiff*xDiff)/(rightA*rightA)))))+'%');
+		});
+
+	</script>
+
+
+
+</body></html>
